@@ -1,0 +1,111 @@
+<table class="table mt-3" id="ticketstable">
+  <thead class="text-center">
+    <tr class="no-border header-table">
+      <th>
+        Priorité <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Code client SF <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Nom <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Email <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Catégorie <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Entité <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Status <i class="fa-solid fa-sort"></i>
+      </th>
+      <th>
+        Date <i class="fa-solid fa-sort"></i>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ticket in tickets %}
+      <tr class="text-center">
+        <td>
+          {% if ticket.priority == 3 %}
+            <p style="color: #ff0000">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Haute
+            </p>
+          {% elseif ticket.priority == 2 %}
+            <p style="color: #FFA500">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Moyenne
+            </p>
+          {% elseif ticket.priority == 1 %}
+            <p style="color: #64b664">
+              <i class="fa-solid fa-circle-question"></i>
+              Faible
+            </p>
+          {% endif %}
+        </td>
+        <td>
+          {% if ticket.client %}
+            {{ ticket.client }}
+          {% else %}
+            -
+          {% endif %}
+        </td>
+        <td>
+          {{ ticket.clientName|capitalize }}
+        </td>
+        <td>
+          {{ ticket.clientEmail }}
+        </td>
+        <td>
+          {{ ticket.category }}
+        </td>
+        <td>
+          {{ ticket.entity }}
+        </td>
+        <td>
+          {% if ticket.status == 0 %}
+            <p style="color: #ff0000">
+              OUVERT
+            </p>
+          {% elseif ticket.status == 1 %}
+            <p style="color: #64b664">
+              FERME
+            </p>
+          {% endif %}
+        </td>
+        <td>{{ticket.createdAt|date("d/m/Y")}}
+        <td>
+          <a href="{{
+            path(
+              'ticket_show',
+              {
+                id: ticket.id
+              }
+            )
+            }}">
+            <i class="fa-solid fa-eye text-success"></i>
+          </a>
+        </td>
+        <td>
+          <a href="{{
+            path(
+              'ticket_edit',
+              {
+                id: ticket.id
+              }
+            )
+            }}">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

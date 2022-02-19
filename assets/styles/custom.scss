@@ -1,0 +1,38 @@
+thead input {
+    width: 100%;
+}
+
+.no-border{
+    border: solid 0px transparent;
+}
+
+.dataTables_filter{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+}
+
+.dataTables_filter input
+{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+table input {
+    border: solid lightgray 1px;
+    border-radius: 3px;
+}
+
+.paginate_button.page-item.active a{
+    background-color: black;
+    border-color: black;
+}
+
+#ticketstable_wrapper{
+    margin-top: 50px;
+}
+
+.header-table th {
+    cursor: pointer;
+}

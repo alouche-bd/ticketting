@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Ticket
+{% endblock %}
+
+{% block body %}
+  <h1 class="text-center m-3">
+    Ticket client {{ ticket.clientEmail }}
+  </h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>
+          Priority
+        </th>
+        <td>
+          {% if ticket.priority == 3 %}
+            <p style="color: #ff0000">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Haute
+            </p>
+          {% elseif ticket.priority == 2 %}
+            <p style="color: #FFA500">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Moyenne
+            </p>
+          {% elseif ticket.priority == 1 %}
+            <p style="color: #64b664">
+              <i class="fa-solid fa-circle-question"></i>
+              Faible
+            </p>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Client
+        </th>
+        <td>
+          {{ ticket.client }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Nom
+        </th>
+        <td>
+          {{ ticket.clientName }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Email
+        </th>
+        <td>
+          {{ ticket.clientEmail }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Categorie
+        </th>
+        <td>
+          {{ ticket.category }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Description
+        </th>
+        <td>
+          {{ ticket.description }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Entitée
+        </th>
+        <td>
+          {{ ticket.entity }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Créé le
+        </th>
+        <td>
+          {{ ticket.createdAt|date('d/m/Y') }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Status
+        </th>
+        <td>
+          {% if ticket.status == 0 %}
+            <p style="color: #ff0000">
+              OUVERT
+            </p>
+          {% elseif ticket.priority == 1 %}
+            <p style="color: #FFA500">
+              FERME
+            </p>
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
