@@ -27,6 +27,22 @@ class TicketApiController extends AbstractController
         return RequestService::returnJsonData($tickets);
     }
 
+    #[Route(path: '/api/tickets/on', name: 'api_tickets_on', methods: ['GET'])]
+    public function getTicketsOn(TicketRepository $ticketRepository)
+    {
+        $tickets = $ticketRepository->findOn();
+
+        return RequestService::returnJsonData($tickets);
+    }
+
+    #[Route(path: '/api/tickets/off', name: 'api_tickets_off', methods: ['GET'])]
+    public function getTicketsOff(TicketRepository $ticketRepository)
+    {
+        $tickets = $ticketRepository->findOff();
+
+        return RequestService::returnJsonData($tickets);
+    }
+
     #[Route(path: '/api/tickets', name: 'api_tickets_post', methods: ['POST'])]
     public function postTicket(Request $request)
     {

@@ -32,6 +32,26 @@ class TicketRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findOn()
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.status = :status')
+            ->setParameter('status', 0)
+            ->orderBy('t.created_at', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOff()
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.status = :status')
+            ->setParameter('status', 1)
+            ->orderBy('t.created_at', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findOffByEntity($value)
     {
         return $this->createQueryBuilder('t')
